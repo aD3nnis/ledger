@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import seedJson from './transactions.json'
+import seedJson from './transactions.json' with { type: 'json' }
 import { parseTransactions } from './seed'
 
 const good = { id: 't1', date: '2026-10-01', merchant: 'Acme', status: 'processed', amountCents: 100, feeCents: 3, surchargeCents: 0 }

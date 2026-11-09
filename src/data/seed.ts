@@ -1,6 +1,6 @@
 import { STATUSES, type Status, type Transaction } from '../domain/transaction'
 import { isCalendarDate } from '../domain/filters'
-import seedJson from './transactions.json'
+import seedJson from './transactions.json' with { type: 'json' }
 
 const MONEY_FIELDS = ['amountCents', 'feeCents', 'surchargeCents'] as const
 
