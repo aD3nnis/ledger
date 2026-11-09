@@ -31,6 +31,8 @@ Node 22. React + TypeScript + Vite front end; seed data in `src/data/`.
 
 CI: [.github/workflows/ci.yml](.github/workflows/ci.yml) runs all four on every PR and push to `main`.
 
+Hooks ([.claude/settings.json](.claude/settings.json), scripts in `.claude/hooks/`): ESLint on the edited file + typecheck after every edit; `npm test` when Claude stops; any `git push` to `main` is blocked (deny rules + `guard-push-main.sh`). Reviewer subagent: [.claude/agents/reviewer.md](.claude/agents/reviewer.md).
+
 ## Workflow (every feature)
 1. SPEC first, from `docs/templates/SPEC.md`. Ask the human the domain unknowns; never guess them.
 2. Plan mode → `docs/plans/plan-<ticket>.md`. The human edits the plan before approving it.
