@@ -21,7 +21,8 @@ h2 { margin: 0; font-size: 1.1rem; }
 .field { display: flex; flex-direction: column; gap: 4px; font-size: 0.875rem; }
 .field input, .field select { font: inherit; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; min-width: 9rem; }
 .field input[aria-invalid='true'] { border-color: var(--error); }
-.error { flex-basis: 100%; margin: 0; color: var(--error); font-weight: 600; font-size: 0.875rem; }
+.error-slot { flex-basis: 100%; }
+.error { margin: 0; color: var(--error); font-weight: 600; font-size: 0.875rem; }
 
 .summary { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; }
 .summary .hint { margin: 2px 0 10px; color: var(--muted); font-size: 0.8rem; }

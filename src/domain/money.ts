@@ -18,5 +18,7 @@ export function parseDollars(text: string): ParseDollarsResult {
   if (!match) return { ok: false, error: 'must be a number, like 25 or 25.50' }
   const [, whole = '0', fraction = ''] = match
   if (fraction.length > 2) return { ok: false, error: 'can have at most 2 decimal places' }
-  return { ok: true, cents: Number(whole) * 100 + Number(fraction.padEnd(2, '0')) }
+  const cents = Number(whole) * 100 + Number(fraction.padEnd(2, '0'))
+  if (!Number.isSafeInteger(cents)) return { ok: false, error: 'is too large' }
+  return { ok: true, cents }
 }

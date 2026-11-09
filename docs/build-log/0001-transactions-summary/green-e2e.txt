@@ -1,10 +1,11 @@
 
-Running 5 tests using 5 workers
+Running 6 tests using 5 workers
 
-  ✓  2 [chromium] › e2e/transactions.spec.ts:75:1 › empty result (1.6s)
-  ✓  4 [chromium] › e2e/transactions.spec.ts:108:1 › invalid date range shows error (1.8s)
-  ✓  1 [chromium] › e2e/transactions.spec.ts:61:1 › summary follows filters (1.9s)
-  ✓  3 [chromium] › e2e/transactions.spec.ts:38:1 › paginates 10 per page (2.0s)
-  ✓  5 [chromium] › e2e/transactions.spec.ts:86:1 › invalid amount range shows error (2.0s)
+  ✓  1 [chromium] › e2e/transactions.spec.ts:117:1 › empty result (2.1s)
+  ✓  5 [chromium] › e2e/transactions.spec.ts:150:1 › invalid date range shows error (2.3s)
+  ✓  4 [chromium] › e2e/transactions.spec.ts:103:1 › summary follows filters (2.4s)
+  ✓  2 [chromium] › e2e/transactions.spec.ts:128:1 › invalid amount range shows error (2.6s)
+  ✓  3 [chromium] › e2e/transactions.spec.ts:73:1 › paginates 10 per page (2.6s)
+  ✓  6 [chromium] › e2e/transactions.spec.ts:165:1 › a date that does not exist shows an error (745ms)
 
-  5 passed (4.3s)
+  6 passed (5.5s)

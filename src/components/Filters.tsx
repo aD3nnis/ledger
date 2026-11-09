@@ -52,7 +52,10 @@ export function Filters({ value, errors, onChange }: FiltersProps) {
           <label htmlFor="from">From date</label>
           <input
             id="from"
-            type="date"
+            type="text"
+            inputMode="numeric"
+            placeholder="YYYY-MM-DD"
+            autoComplete="off"
             value={value.from}
             aria-invalid={dateInvalid}
             aria-describedby={dateInvalid ? 'date-error' : undefined}
@@ -65,7 +68,10 @@ export function Filters({ value, errors, onChange }: FiltersProps) {
           <label htmlFor="to">To date</label>
           <input
             id="to"
-            type="date"
+            type="text"
+            inputMode="numeric"
+            placeholder="YYYY-MM-DD"
+            autoComplete="off"
             value={value.to}
             aria-invalid={dateInvalid}
             aria-describedby={dateInvalid ? 'date-error' : undefined}
@@ -74,11 +80,14 @@ export function Filters({ value, errors, onChange }: FiltersProps) {
             }}
           />
         </div>
-        {dateInvalid && (
-          <p id="date-error" className="error" role="alert">
-            {errors.date}
-          </p>
-        )}
+        {/* Polite live region, always rendered so screen readers announce changes without interrupting typing. */}
+        <div className="error-slot" aria-live="polite">
+          {dateInvalid && (
+            <p id="date-error" className="error">
+              {errors.date}
+            </p>
+          )}
+        </div>
       </fieldset>
 
       <fieldset className={amountInvalid ? 'invalid' : undefined}>
@@ -113,11 +122,14 @@ export function Filters({ value, errors, onChange }: FiltersProps) {
             }}
           />
         </div>
-        {amountInvalid && (
-          <p id="amount-error" className="error" role="alert">
-            {errors.amount}
-          </p>
-        )}
+        {/* Polite live region, always rendered so screen readers announce changes without interrupting typing. */}
+        <div className="error-slot" aria-live="polite">
+          {amountInvalid && (
+            <p id="amount-error" className="error">
+              {errors.amount}
+            </p>
+          )}
+        </div>
       </fieldset>
     </form>
   )
