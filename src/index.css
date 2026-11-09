@@ -1,0 +1,46 @@
+:root {
+  --text: #1c1f23;
+  --muted: #5b6470;
+  --border: #d5dae0;
+  --surface: #f6f8fa;
+  --error: #b42318;
+  --error-bg: #fef3f2;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: #fff;
+}
+body { margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { margin: 0 0 16px; font-size: 1.75rem; }
+h2 { margin: 0; font-size: 1.1rem; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; margin-bottom: 20px; }
+.filters fieldset { display: flex; flex-wrap: wrap; gap: 8px 12px; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px 12px; margin: 0; }
+.filters fieldset.invalid { border-color: var(--error); background: var(--error-bg); }
+.filters legend { font-weight: 600; padding: 0 4px; }
+.field { display: flex; flex-direction: column; gap: 4px; font-size: 0.875rem; }
+.field input, .field select { font: inherit; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; min-width: 9rem; }
+.field input[aria-invalid='true'] { border-color: var(--error); }
+.error { flex-basis: 100%; margin: 0; color: var(--error); font-weight: 600; font-size: 0.875rem; }
+
+.summary { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; }
+.summary .hint { margin: 2px 0 10px; color: var(--muted); font-size: 0.8rem; }
+.summary dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 0; }
+.summary dt { color: var(--muted); font-size: 0.8rem; }
+.summary dd { margin: 2px 0 0; font-size: 1.25rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+caption { text-align: left; font-weight: 600; padding-bottom: 8px; }
+th, td { padding: 8px; border-bottom: 1px solid var(--border); text-align: left; }
+th { color: var(--muted); font-weight: 600; font-size: 0.8rem; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.status { padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; background: var(--surface); border: 1px solid var(--border); }
+.status-processed { background: #ecfdf3; border-color: #abefc6; }
+.status-pending { background: #fffaeb; border-color: #fedf89; }
+.status-refunded { background: #f2f4f7; }
+.empty { padding: 24px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: 8px; }
+
+.pagination { display: flex; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 12px; }
+.pagination button { font: inherit; padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; background: #fff; cursor: pointer; }
+.pagination button:disabled { opacity: 0.5; cursor: default; }
+@media (max-width: 600px) { table { font-size: 0.8rem; } th, td { padding: 6px 4px; } }
