@@ -1,39 +1,46 @@
 # SPEC-0001-transactions-summary: transaction list with filters, pagination and a processed-total summary
-Status: draft · Started: 2026-11-09 · Branch: `feat/transactions-summary` · Plan: [plan-0001-transactions-summary](../plans/plan-0001-transactions-summary.md)
+Status: approved (2026-11-09) · Started: 2026-11-09 · Branch: `feat/transactions-summary` · Plan: [plan-0001-transactions-summary](../plans/plan-0001-transactions-summary.md)
 
 ## Known
-<!-- facts, each with its source -->
-- Scope is front end only: React + TypeScript + Vite, reading invented seed JSON. No API or database in this ticket. Source: project plan, decided 2026-11-09.
-- Seed data stores money as **integer cents, per transaction**: each transaction has `amountCents`, `feeCents`, `surchargeCents`. The UI formats cents as dollars only for display. Source: product owner, 2026-11-09.
-- Statuses are `processed`, `pending`, `refunded`. **Only `processed` counts** toward the summary; pending and refunded are listed but excluded. Source: product owner, 2026-11-09.
-- **Processed total = Σ (`amountCents` + `surchargeCents`)** over processed transactions. Fees are not subtracted; they get their own line. Source: product owner, 2026-11-09.
-- The summary shows four lines: processed total, total fees, total surcharge, processed count. All four cover processed transactions only. Source: product owner, 2026-11-09.
-- The summary covers the **filtered set across all pages**, not just the visible page. Source: product owner, 2026-11-09.
-- Filters: status (processed / pending / refunded / all), date range (from, to), amount range (min, max, in dollars). Source: product owner, 2026-11-09.
-- Page size is a fixed **10** rows, with previous/next controls. Source: product owner, 2026-11-09.
-- Errors must be visible, never silent ([standards](../standards.md#validation)). Source: repo standards.
+<!-- facts, each with its source. "PO" = product owner answers, 2026-11-09 -->
+### Scope and data
+- Front end only: React + TypeScript + Vite, reading invented seed JSON. No API or database in this ticket. Source: project plan.
+- Money is stored as **integer cents, per transaction**: `amountCents`, `feeCents`, `surchargeCents`. The UI formats cents as US dollars (`$1,234.56`) only for display. Source: PO.
+- Statuses are `processed`, `pending`, `refunded`. Source: PO.
+
+### Summary rules
+- **Processed total = Σ (`amountCents` + `surchargeCents`)** over transactions with status `processed`. Fees are not subtracted. Source: PO.
+- The summary shows four lines: processed total, total fees, total surcharge, processed count. All four cover `processed` transactions only; pending and refunded are listed but excluded. Source: PO.
+- The summary covers the **filtered set across all pages**, not just the visible page. Source: PO.
+- When nothing matches, the list says "No transactions match these filters" and every summary line shows zero. Source: PO.
+
+### List and filters
+- Filters: status (processed / pending / refunded / all), date range (from, to), amount range (min, max, in dollars). Source: PO.
+- The amount filter compares against `amountCents` only (not amount + surcharge). Source: PO.
+- All bounds are inclusive; an empty bound means unbounded. Source: PO.
+- Page size is a fixed **10** rows, with previous/next controls. Any filter change returns to page 1. Source: PO.
+- The list is sorted newest first. Source: PO.
+
+### Invalid filter input
+- Invalid means: amount min > max; a negative amount; an amount that isn't a number or has more than 2 decimal places; date "to" before "from"; a date that isn't a real calendar date. Source: PO.
+- On invalid input, a visible message appears next to the filter that caused it, saying what is wrong; the list and summary keep their last valid results. Source: PO (Claude's recommendation, accepted). Also [standards](../standards.md#validation).
 
 ## Unknown — must answer before plan
 - None.
 
 ## Unknown
-- None open. Anything found during planning goes here and waits on the product owner.
+- None open. Anything found during planning goes here and waits on the PO.
 
 ## Assumed
 <!-- what will be built if nobody objects -->
-- **On invalid filter input, a visible message appears next to the filter that caused it, saying what is wrong; the list and summary keep their last valid results.** (Claude's recommendation, accepted by the product owner 2026-11-09 as an assumption.)
-- Invalid filter input is: amount min > max; a negative amount; an amount that isn't a number or has more than 2 decimal places; date "to" before "from"; a date that isn't a real calendar date.
-- The amount filter compares against `amountCents` only (not amount + surcharge). Bounds are inclusive.
-- The date filter compares calendar dates, inclusive on both ends; an empty bound means unbounded.
-- Changing any filter resets the list to page 1.
-- The list is sorted newest first. Currency is USD, shown as `$1,234.56`.
-- Seed data has at least 25 transactions across all three statuses, so pagination shows 3 pages unfiltered.
-- An empty filtered set shows "No transactions match these filters" and a summary of $0.00 / 0.
+- Claude generates the seed data (`src/data/transactions.json`): about 30 invented transactions across all three statuses, with some on filter boundary values; obviously fake merchant names. The PO skims it in the diff. (PO chose this 2026-11-09.)
+- Unit tests build their own small inline fixtures with hand-checkable totals; they don't read the seed file. End-to-end tests compute expected values from the seed file in code, not by hand.
+- Dates are calendar dates (`YYYY-MM-DD`) compared without time zones.
 
 ## Out of scope
 - API, database, auth, persistence of filter state across reloads.
 - Editing, creating or refunding transactions.
-- Multiple currencies, time zones beyond the browser's local date.
+- Multiple currencies, time zones.
 - Page-size selector, sorting controls, CSV export.
 
 ## Done when
@@ -41,10 +48,11 @@ Status: draft · Started: 2026-11-09 · Branch: `feat/transactions-summary` · P
 - [ ] The processed total equals Σ (amount + surcharge) over processed transactions only. — test: `src/domain/summary.test.ts` › `processed total includes surcharge, excludes pending and refunded`
 - [ ] Total fees, total surcharge and processed count cover processed transactions only. — test: `src/domain/summary.test.ts` › `fees, surcharge and count use processed only`
 - [ ] An empty set summarises to 0 for every line. — test: `src/domain/summary.test.ts` › `empty set`
-- [ ] Each invalid filter input listed under Assumed returns a specific error message. — test: `src/domain/filters.test.ts` › `rejects …` (one case per input)
+- [ ] Each invalid filter input listed under "Invalid filter input" returns a specific error message. — test: `src/domain/filters.test.ts` › `rejects …` (one case per input)
 - [ ] Filtering by status, date range and amount range returns the matching transactions, bounds inclusive. — test: `src/domain/filters.test.ts` › `applies …`
-- [ ] The page shows 10 rows per page, and next/previous move between pages; a filter change returns to page 1. — test: `e2e/transactions.spec.ts` › `paginates 10 per page`
+- [ ] The page shows 10 rows per page, newest first; next/previous move between pages; a filter change returns to page 1. — test: `e2e/transactions.spec.ts` › `paginates 10 per page`
 - [ ] The summary on screen reflects the filtered set across all pages. — test: `e2e/transactions.spec.ts` › `summary follows filters`
+- [ ] A filter that matches nothing shows "No transactions match these filters" and zeros. — test: `e2e/transactions.spec.ts` › `empty result`
 - [ ] Entering min > max shows a visible error next to the amount filter, and the list and summary keep their previous values. — test: `e2e/transactions.spec.ts` › `invalid amount range shows error` (with screenshot)
 - [ ] Entering a "to" date before "from" shows a visible error next to the date filter. — test: `e2e/transactions.spec.ts` › `invalid date range shows error`
 - [ ] `lint`, `typecheck`, `test` and `e2e` pass in GitHub Actions on the PR.
