@@ -1,0 +1,272 @@
+[
+  {
+    "id": "txn_023",
+    "date": "2026-09-04",
+    "merchant": "Acme Coffee",
+    "status": "processed",
+    "amountCents": 8625,
+    "feeCents": 280,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_013",
+    "date": "2026-09-10",
+    "merchant": "Wayne Diner",
+    "status": "processed",
+    "amountCents": 2500,
+    "feeCents": 102,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_026",
+    "date": "2026-09-10",
+    "merchant": "Pied Piper Print",
+    "status": "refunded",
+    "amountCents": 1,
+    "feeCents": 30,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_025",
+    "date": "2026-09-12",
+    "merchant": "Acme Coffee",
+    "status": "pending",
+    "amountCents": 40300,
+    "feeCents": 1199,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_029",
+    "date": "2026-09-12",
+    "merchant": "Acme Coffee",
+    "status": "processed",
+    "amountCents": 44150,
+    "feeCents": 1310,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_018",
+    "date": "2026-09-14",
+    "merchant": "Wayne Diner",
+    "status": "refunded",
+    "amountCents": 700,
+    "feeCents": 50,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_004",
+    "date": "2026-09-16",
+    "merchant": "Stark Hardware",
+    "status": "processed",
+    "amountCents": 2500,
+    "feeCents": 102,
+    "surchargeCents": 250
+  },
+  {
+    "id": "txn_002",
+    "date": "2026-09-21",
+    "merchant": "Pied Piper Print",
+    "status": "processed",
+    "amountCents": 5225,
+    "feeCents": 182,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_012",
+    "date": "2026-09-26",
+    "merchant": "Duff Market",
+    "status": "processed",
+    "amountCents": 12900,
+    "feeCents": 404,
+    "surchargeCents": 99
+  },
+  {
+    "id": "txn_011",
+    "date": "2026-09-28",
+    "merchant": "Umbrella Pharmacy",
+    "status": "refunded",
+    "amountCents": 9301,
+    "feeCents": 300,
+    "surchargeCents": 99
+  },
+  {
+    "id": "txn_016",
+    "date": "2026-09-28",
+    "merchant": "Wonka Sweets",
+    "status": "processed",
+    "amountCents": 34301,
+    "feeCents": 1025,
+    "surchargeCents": 99
+  },
+  {
+    "id": "txn_001",
+    "date": "2026-10-01",
+    "merchant": "Initech Supplies",
+    "status": "pending",
+    "amountCents": 10150,
+    "feeCents": 324,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_010",
+    "date": "2026-10-01",
+    "merchant": "Hooli Cloud",
+    "status": "processed",
+    "amountCents": 43700,
+    "feeCents": 1297,
+    "surchargeCents": 99
+  },
+  {
+    "id": "txn_009",
+    "date": "2026-10-05",
+    "merchant": "Wayne Diner",
+    "status": "processed",
+    "amountCents": 7950,
+    "feeCents": 261,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_014",
+    "date": "2026-10-05",
+    "merchant": "Duff Market",
+    "status": "processed",
+    "amountCents": 38250,
+    "feeCents": 1139,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_017",
+    "date": "2026-10-07",
+    "merchant": "Umbrella Pharmacy",
+    "status": "refunded",
+    "amountCents": 34200,
+    "feeCents": 1022,
+    "surchargeCents": 250
+  },
+  {
+    "id": "txn_008",
+    "date": "2026-10-08",
+    "merchant": "Pied Piper Print",
+    "status": "pending",
+    "amountCents": 10000,
+    "feeCents": 320,
+    "surchargeCents": 250
+  },
+  {
+    "id": "txn_024",
+    "date": "2026-10-09",
+    "merchant": "Globex Books",
+    "status": "processed",
+    "amountCents": 5201,
+    "feeCents": 181,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_021",
+    "date": "2026-10-10",
+    "merchant": "Acme Coffee",
+    "status": "refunded",
+    "amountCents": 10000,
+    "feeCents": 320,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_030",
+    "date": "2026-10-12",
+    "merchant": "Wayne Diner",
+    "status": "processed",
+    "amountCents": 15025,
+    "feeCents": 466,
+    "surchargeCents": 99
+  },
+  {
+    "id": "txn_005",
+    "date": "2026-10-18",
+    "merchant": "Initech Supplies",
+    "status": "refunded",
+    "amountCents": 42001,
+    "feeCents": 1248,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_027",
+    "date": "2026-10-18",
+    "merchant": "Hooli Cloud",
+    "status": "pending",
+    "amountCents": 29150,
+    "feeCents": 875,
+    "surchargeCents": 150
+  },
+  {
+    "id": "txn_003",
+    "date": "2026-10-19",
+    "merchant": "Acme Coffee",
+    "status": "processed",
+    "amountCents": 18825,
+    "feeCents": 576,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_028",
+    "date": "2026-10-29",
+    "merchant": "Pied Piper Print",
+    "status": "processed",
+    "amountCents": 8101,
+    "feeCents": 265,
+    "surchargeCents": 99
+  },
+  {
+    "id": "txn_006",
+    "date": "2026-10-31",
+    "merchant": "Umbrella Pharmacy",
+    "status": "processed",
+    "amountCents": 19299,
+    "feeCents": 590,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_015",
+    "date": "2026-10-31",
+    "merchant": "Duff Market",
+    "status": "pending",
+    "amountCents": 38600,
+    "feeCents": 1149,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_007",
+    "date": "2026-11-01",
+    "merchant": "Stark Hardware",
+    "status": "processed",
+    "amountCents": 9300,
+    "feeCents": 300,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_022",
+    "date": "2026-11-03",
+    "merchant": "Pied Piper Print",
+    "status": "pending",
+    "amountCents": 14501,
+    "feeCents": 451,
+    "surchargeCents": 0
+  },
+  {
+    "id": "txn_019",
+    "date": "2026-11-07",
+    "merchant": "Hooli Cloud",
+    "status": "processed",
+    "amountCents": 5900,
+    "feeCents": 201,
+    "surchargeCents": 250
+  },
+  {
+    "id": "txn_020",
+    "date": "2026-11-08",
+    "merchant": "Initech Supplies",
+    "status": "processed",
+    "amountCents": 18601,
+    "feeCents": 569,
+    "surchargeCents": 150
+  }
+]
