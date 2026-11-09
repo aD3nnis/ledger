@@ -28,4 +28,9 @@ describe('parseDollars', () => {
     expect(parseDollars('-1').ok).toBe(false)
     expect(parseDollars('1.001').ok).toBe(false)
   })
+
+  it('rejects amounts too large to hold exactly as integer cents', () => {
+    expect(parseDollars('99999999999999999')).toEqual({ ok: false, error: 'is too large' })
+    expect(parseDollars('90071992547409.91')).toEqual({ ok: true, cents: 9007199254740991 })
+  })
 })

@@ -34,6 +34,10 @@ describe('validateFilters: invalid input (SPEC-0001 › Invalid filter input)', 
     expect(errorsFor({ max: '12x' }).amount).toBe('Maximum amount must be a number, like 25 or 25.50')
   })
 
+  it('rejects an amount too large to hold exactly in cents', () => {
+    expect(errorsFor({ max: '99999999999999999' }).amount).toBe('Maximum amount is too large')
+  })
+
   it('rejects an amount with more than 2 decimal places', () => {
     expect(errorsFor({ min: '12.345' }).amount).toBe('Minimum amount can have at most 2 decimal places')
   })
@@ -73,6 +77,7 @@ describe('validateFilters: valid input', () => {
 describe('applyFilters (SPEC-0001 › List and filters)', () => {
   it('applies the status filter', () => {
     expect(ids(applyFilters(FIXTURE, criteriaFor({ status: 'processed' })))).toEqual(['a', 'b', 'e'])
+    expect(ids(applyFilters(FIXTURE, criteriaFor({ status: 'pending' })))).toEqual(['c'])
     expect(ids(applyFilters(FIXTURE, criteriaFor({ status: 'refunded' })))).toEqual(['d'])
   })
 
