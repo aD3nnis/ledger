@@ -1,0 +1,45 @@
+
+ RUN  v5.1.0 .
+
+ ✓ src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > returns 10 rows per page by default 3ms
+ ✓ src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > clamps the page to the pages that exist 0ms
+ ✓ src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > handles an empty list 2ms
+ ✓ src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > processed total includes surcharge, excludes pending and refunded 2ms
+ ✓ src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > fees, surcharge and count use processed only 1ms
+ ✓ src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > does not subtract fees from the processed total 0ms
+ ✓ src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > empty set 3ms
+ ✓ src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > a set with no processed transactions summarises to zero 1ms
+ ✓ src/data/seed.test.ts > parseTransactions (data edge) > accepts the seed file 2ms
+ ✓ src/data/seed.test.ts > parseTransactions (data edge) > rejects a record with an unknown status, naming the record 1ms
+ ✓ src/data/seed.test.ts > parseTransactions (data edge) > rejects money that is not integer cents 0ms
+ ✓ src/data/seed.test.ts > parseTransactions (data edge) > rejects data that is not a list 1ms
+ ✓ src/domain/money.test.ts > formatCents > formats cents as US dollars 5ms
+ ✓ src/domain/money.test.ts > parseDollars > parses whole and decimal dollars into integer cents 2ms
+ ✓ src/domain/money.test.ts > parseDollars > rejects text that is not a plain number 0ms
+ ✓ src/domain/money.test.ts > parseDollars > rejects negatives and more than 2 decimal places 0ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects min amount greater than max 2ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a negative min amount 0ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a negative max amount 0ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects an amount that is not a number 1ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects an amount with more than 2 decimal places 0ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a to date before the from date 2ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a date that is not a real calendar date 1ms
+ ✓ src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > reports an amount error and a date error together 1ms
+ ✓ src/domain/filters.test.ts > validateFilters: valid input > treats empty bounds as unbounded 1ms
+ ✓ src/domain/filters.test.ts > validateFilters: valid input > converts dollar bounds to cents and accepts equal bounds 1ms
+ ✓ src/domain/filters.test.ts > validateFilters: valid input > ignores surrounding spaces 0ms
+ ✓ src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the status filter 1ms
+ ✓ src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the date range with inclusive bounds 0ms
+ ✓ src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the amount range with inclusive bounds on amount only, not amount + surcharge 0ms
+ ✓ src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies one-sided bounds 0ms
+ ✓ src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies all filters together 0ms
+ ✓ src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies no filters when everything is empty 0ms
+ ✓ src/domain/filters.test.ts > sortNewestFirst > orders by date descending, then id descending 1ms
+ ✓ src/domain/filters.test.ts > sortNewestFirst > does not mutate its input 0ms
+ ✓ src/App.test.tsx > App (scaffold smoke test) > renders the page heading 75ms
+
+ Test Files  6 passed (6)
+      Tests  36 passed (36)
+   Start at  13:35:00
+   Duration  1.91s (environment 79%, setup 14%, import 3%, transform 2%, tests 1%)
+

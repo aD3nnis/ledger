@@ -8,6 +8,9 @@ export interface Page<T> {
   pageCount: number
 }
 
-export function paginate<T>(_items: readonly T[], _page: number, _size: number = PAGE_SIZE): Page<T> {
-  throw new Error('not implemented')
+export function paginate<T>(items: readonly T[], page: number, size: number = PAGE_SIZE): Page<T> {
+  const pageCount = Math.ceil(items.length / size)
+  const current = Math.min(Math.max(1, page), Math.max(1, pageCount))
+  const start = (current - 1) * size
+  return { rows: items.slice(start, start + size), page: current, pageCount }
 }
