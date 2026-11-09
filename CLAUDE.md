@@ -20,7 +20,18 @@ A small payments ledger, built feature by feature with Claude Code to practise a
 `<ticket>` is `NNNN-<slug>` (e.g. `0001-transactions-summary`) until an issue tracker is used. `<track>` is the branch name without its prefix (`feat/transactions-summary` → `transactions-summary`).
 
 ## Commands
-None yet: the app is scaffolded in the first feature. Lint, typecheck, test and e2e commands go here when they exist.
+Node 22. React + TypeScript + Vite front end; seed data in `src/data/`.
+| Command | Does | Runs in |
+|---|---|---|
+| `npm run dev` | Dev server on :5173 | — |
+| `npm run lint` | ESLint (typescript-eslint strict, react-hooks), zero warnings | PostToolUse hook, CI |
+| `npm run typecheck` | `tsc -b --noEmit`, strict mode | PostToolUse hook, CI |
+| `npm test` | Vitest unit tests (`src/**/*.test.ts(x)`) | Stop hook, CI |
+| `npm run e2e` | Playwright (`e2e/`), starts the dev server itself | CI |
+
+CI: [.github/workflows/ci.yml](.github/workflows/ci.yml) runs all four on every PR and push to `main`.
+
+Hooks ([.claude/settings.json](.claude/settings.json), scripts in `.claude/hooks/`): ESLint on the edited file + typecheck after every edit; `npm test` when Claude stops; any `git push` to `main` is blocked (deny rules + `guard-push-main.sh`). Reviewer subagent: [.claude/agents/reviewer.md](.claude/agents/reviewer.md).
 
 ## Workflow (every feature)
 1. SPEC first, from `docs/templates/SPEC.md`. Ask the human the domain unknowns; never guess them.

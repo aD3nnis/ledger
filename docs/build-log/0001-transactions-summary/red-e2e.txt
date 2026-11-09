@@ -1,0 +1,167 @@
+
+Running 5 tests using 5 workers
+
+  ✘  5 [chromium] › e2e/transactions.spec.ts:61:1 › summary follows filters (6.0s)
+  ✘  2 [chromium] › e2e/transactions.spec.ts:38:1 › paginates 10 per page (6.2s)
+  ✘  4 [chromium] › e2e/transactions.spec.ts:75:1 › empty result (8.0s)
+  ✘  3 [chromium] › e2e/transactions.spec.ts:86:1 › invalid amount range shows error (8.0s)
+  ✘  1 [chromium] › e2e/transactions.spec.ts:108:1 › invalid date range shows error (8.0s)
+
+
+  1) [chromium] › e2e/transactions.spec.ts:38:1 › paginates 10 per page ────────────────────────────
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('navigation', { name: 'Pagination' })
+    Expected substring: "Page 1 of 3"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByRole('navigation', { name: 'Pagination' }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: 'Pagination' })
+
+
+      43 |   for (let p = 1; p <= pageCount; p++) {
+      44 |     const slice = all.slice((p - 1) * PAGE_SIZE, p * PAGE_SIZE)
+    > 45 |     await expect(pagination(page)).toContainText(`Page ${String(p)} of ${String(pageCount)}`)
+         |                                    ^
+      46 |     await expect(bodyRows(page)).toHaveCount(slice.length)
+      47 |     expect(await rowDates(page)).toEqual(slice.map((t) => t.date)) // newest first
+      48 |     if (p < pageCount) await pagination(page).getByRole('button', { name: 'Next' }).click()
+        at ./e2e/transactions.spec.ts:45:36
+
+    Error Context: test-results/transactions-paginates-10-per-page-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transactions-paginates-10-per-page-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/transactions-paginates-10-per-page-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › e2e/transactions.spec.ts:61:1 › summary follows filters ──────────────────────────
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByRole('region', { name: 'Summary' }).getByLabel('Processed total')
+    Expected: "$3,020.98"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByRole('region', { name: 'Summary' }).getByLabel('Processed total') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'Summary' }).getByLabel('Processed total')
+
+
+      26 | async function expectSummary(page: Page, patch: Partial<RawFilters>) {
+      27 |   const s = summarize(expectedRows(patch))
+    > 28 |   await expect(summary(page).getByLabel('Processed total')).toHaveText(formatCents(s.processedTotalCents))
+         |                                                             ^
+      29 |   await expect(summary(page).getByLabel('Total fees')).toHaveText(formatCents(s.feeCents))
+      30 |   await expect(summary(page).getByLabel('Total surcharge')).toHaveText(formatCents(s.surchargeCents))
+      31 |   await expect(summary(page).getByLabel('Processed count')).toHaveText(String(s.processedCount))
+        at expectSummary (./e2e/transactions.spec.ts:28:61)
+        at ./e2e/transactions.spec.ts:62:9
+
+    Error Context: test-results/transactions-summary-follows-filters-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transactions-summary-follows-filters-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/transactions-summary-follows-filters-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › e2e/transactions.spec.ts:75:1 › empty result ─────────────────────────────────────
+
+    Test timeout of 8000ms exceeded.
+
+    Error: locator.fill: Test timeout of 8000ms exceeded.
+    Call log:
+      - waiting for getByLabel('From date')
+
+
+      74 |
+      75 | test('empty result', async ({ page }) => {
+    > 76 |   await page.getByLabel('From date').fill('2030-01-01')
+         |                                      ^
+      77 |   await expect(page.getByText('No transactions match these filters')).toBeVisible()
+      78 |   await expect(bodyRows(page)).toHaveCount(0)
+      79 |   await expect(summary(page).getByLabel('Processed total')).toHaveText('$0.00')
+        at ./e2e/transactions.spec.ts:76:38
+
+    Error Context: test-results/transactions-empty-result-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transactions-empty-result-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/transactions-empty-result-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › e2e/transactions.spec.ts:86:1 › invalid amount range shows error ─────────────────
+
+    Test timeout of 8000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 8000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Status')
+
+
+      85 |
+      86 | test('invalid amount range shows error', async ({ page }) => {
+    > 87 |   await page.getByLabel('Status').selectOption('processed')
+         |                                   ^
+      88 |   await page.getByLabel('Minimum amount').fill('100')
+      89 |   await expectSummary(page, { status: 'processed', min: '100' })
+      90 |   const summaryBefore = await summary(page).innerText()
+        at ./e2e/transactions.spec.ts:87:35
+
+    Error Context: test-results/transactions-invalid-amount-range-shows-error-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transactions-invalid-amount-range-shows-error-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/transactions-invalid-amount-range-shows-error-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › e2e/transactions.spec.ts:108:1 › invalid date range shows error ──────────────────
+
+    Test timeout of 8000ms exceeded.
+
+    Error: locator.fill: Test timeout of 8000ms exceeded.
+    Call log:
+      - waiting for getByLabel('From date')
+
+
+      107 |
+      108 | test('invalid date range shows error', async ({ page }) => {
+    > 109 |   await page.getByLabel('From date').fill('2026-10-31')
+          |                                      ^
+      110 |   await expectSummary(page, { from: '2026-10-31' })
+      111 |   const summaryBefore = await summary(page).innerText()
+      112 |   const rowsBefore = await bodyRows(page).allInnerTexts()
+        at ./e2e/transactions.spec.ts:109:38
+
+    Error Context: test-results/transactions-invalid-date-range-shows-error-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transactions-invalid-date-range-shows-error-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/transactions-invalid-date-range-shows-error-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › e2e/transactions.spec.ts:38:1 › paginates 10 per page ─────────────────────────────
+    [chromium] › e2e/transactions.spec.ts:61:1 › summary follows filters ───────────────────────────
+    [chromium] › e2e/transactions.spec.ts:75:1 › empty result ──────────────────────────────────────
+    [chromium] › e2e/transactions.spec.ts:86:1 › invalid amount range shows error ──────────────────
+    [chromium] › e2e/transactions.spec.ts:108:1 › invalid date range shows error ───────────────────

@@ -1,0 +1,104 @@
+## Unit (vitest)
+
+ RUN  v5.1.0 .
+
+ ❯ src/domain/money.test.ts (5 tests | 1 failed) 13ms
+   ❯ parseDollars (4)
+     × rejects amounts too large to hold exactly as integer cents 7ms
+ ❯ src/domain/filters.test.ts (20 tests | 1 failed) 14ms
+   ❯ validateFilters: invalid input (SPEC-0001 › Invalid filter input) (9)
+     × rejects an amount too large to hold exactly in cents 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects an amount too large to hold exactly in cents
+Error: expected invalid, got criteria {"status":"all","maxCents":10000000000000000000}
+ ❯ errorsFor src/domain/filters.test.ts:9:24
+      7| function errorsFor(patch: Partial<RawFilters>) {
+      8|   const result = validateFilters(raw(patch))
+      9|   if (result.ok) throw new Error(`expected invalid, got criteria ${JSO…
+       |                        ^
+     10|   return result.errors
+     11| }
+ ❯ src/domain/filters.test.ts:38:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/domain/money.test.ts > parseDollars > rejects amounts too large to hold exactly as integer cents
+AssertionError: expected { ok: true, …(1) } to deeply equal { ok: false, error: 'is too large' }
+
+- Expected
++ Received
+
+  {
+-   "error": "is too large",
+-   "ok": false,
++   "cents": 10000000000000000000,
++   "ok": true,
+  }
+
+ ❯ src/domain/money.test.ts:33:47
+     31|
+     32|   it('rejects amounts too large to hold exactly as integer cents', () …
+     33|     expect(parseDollars('99999999999999999')).toEqual({ ok: false, err…
+       |                                               ^
+     34|     expect(parseDollars('90071992547409.91')).toEqual({ ok: true, cent…
+     35|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 4 passed (6)
+      Tests  2 failed | 36 passed (38)
+   Start at  14:25:08
+   Duration  1.52s (environment 78%, setup 13%, transform 5%, import 2%, tests 1%, worker 1%)
+
+
+## E2E (playwright)
+
+Running 6 tests using 5 workers
+
+  ✓  1 [chromium] › e2e/transactions.spec.ts:117:1 › empty result (1.5s)
+  ✓  4 [chromium] › e2e/transactions.spec.ts:150:1 › invalid date range shows error (1.7s)
+  ✓  5 [chromium] › e2e/transactions.spec.ts:103:1 › summary follows filters (1.9s)
+  ✓  3 [chromium] › e2e/transactions.spec.ts:73:1 › paginates 10 per page (2.0s)
+  ✓  2 [chromium] › e2e/transactions.spec.ts:128:1 › invalid amount range shows error (2.0s)
+  ✘  6 [chromium] › e2e/transactions.spec.ts:165:1 › a date that does not exist shows an error (5.6s)
+
+
+  1) [chromium] › e2e/transactions.spec.ts:165:1 › a date that does not exist shows an error ───────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('group', { name: 'Date' }).locator('.error')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('group', { name: 'Date' }).locator('.error') with timeout 5000ms
+      - waiting for getByRole('group', { name: 'Date' }).locator('.error')
+
+
+      165 | test('a date that does not exist shows an error', async ({ page }) => {
+      166 |   await page.getByLabel('From date').fill('2026-02-30')
+    > 167 |   await expect(groupError(page, 'Date')).toBeVisible()
+          |                                          ^
+      168 |   await expect(groupError(page, 'Date')).toHaveText("From date isn't a real date (use YYYY-MM-DD)")
+      169 |   await expect(bodyRows(page)).toHaveCount(PAGE_SIZE) // list unchanged: still the unfiltered first page
+      170 | })
+        at ./e2e/transactions.spec.ts:167:42
+
+    Error Context: test-results/transactions-a-date-that-does-not-exist-shows-an-error-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transactions-a-date-that-does-not-exist-shows-an-error-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/transactions-a-date-that-does-not-exist-shows-an-error-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/transactions.spec.ts:165:1 › a date that does not exist shows an error ────────
+  5 passed (9.5s)

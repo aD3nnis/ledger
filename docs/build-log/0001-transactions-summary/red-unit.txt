@@ -1,0 +1,573 @@
+
+ RUN  v5.1.0 .
+
+ × src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > returns 10 rows per page by default 7ms
+   → not implemented
+ × src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > clamps the page to the pages that exist 1ms
+   → not implemented
+ × src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > handles an empty list 2ms
+   → not implemented
+ × src/domain/money.test.ts > formatCents > formats cents as US dollars 7ms
+   → not implemented
+ × src/domain/money.test.ts > parseDollars > parses whole and decimal dollars into integer cents 1ms
+   → not implemented
+ × src/domain/money.test.ts > parseDollars > rejects text that is not a plain number 1ms
+   → not implemented
+ × src/domain/money.test.ts > parseDollars > rejects negatives and more than 2 decimal places 0ms
+   → not implemented
+ × src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > processed total includes surcharge, excludes pending and refunded 5ms
+   → not implemented
+ × src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > fees, surcharge and count use processed only 1ms
+   → not implemented
+ × src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > does not subtract fees from the processed total 0ms
+   → not implemented
+ × src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > empty set 0ms
+   → not implemented
+ × src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > a set with no processed transactions summarises to zero 0ms
+   → not implemented
+ ✓ src/App.test.tsx > App (scaffold smoke test) > renders the page heading 84ms
+ × src/data/seed.test.ts > parseTransactions (data edge) > accepts the seed file 4ms
+   → not implemented
+ × src/data/seed.test.ts > parseTransactions (data edge) > rejects a record with an unknown status, naming the record 5ms
+   → expected [Function] to throw error matching /t1.*status/ but got 'not implemented'
+ × src/data/seed.test.ts > parseTransactions (data edge) > rejects money that is not integer cents 1ms
+   → expected [Function] to throw error matching /t1.*amountCents/ but got 'not implemented'
+ × src/data/seed.test.ts > parseTransactions (data edge) > rejects data that is not a list 1ms
+   → expected [Function] to throw error matching /list/ but got 'not implemented'
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects min amount greater than max 6ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a negative min amount 1ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a negative max amount 1ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects an amount that is not a number 0ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects an amount with more than 2 decimal places 0ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a to date before the from date 0ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a date that is not a real calendar date 0ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > reports an amount error and a date error together 1ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: valid input > treats empty bounds as unbounded 1ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: valid input > converts dollar bounds to cents and accepts equal bounds 1ms
+   → not implemented
+ × src/domain/filters.test.ts > validateFilters: valid input > ignores surrounding spaces 0ms
+   → not implemented
+ × src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the status filter 0ms
+   → not implemented
+ × src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the date range with inclusive bounds 0ms
+   → not implemented
+ × src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the amount range with inclusive bounds on amount only, not amount + surcharge 0ms
+   → not implemented
+ × src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies one-sided bounds 0ms
+   → not implemented
+ × src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies all filters together 0ms
+   → not implemented
+ × src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies no filters when everything is empty 0ms
+   → not implemented
+ × src/domain/filters.test.ts > sortNewestFirst > orders by date descending, then id descending 0ms
+   → not implemented
+ × src/domain/filters.test.ts > sortNewestFirst > does not mutate its input 0ms
+   → not implemented
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 35 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/data/seed.test.ts > parseTransactions (data edge) > accepts the seed file
+Error: not implemented
+ ❯ parseTransactions src/data/seed.ts:5:9
+      3| /** Checks untyped JSON at the edge and returns typed transactions; th…
+      4| export function parseTransactions(_data: unknown): Transaction[] {
+      5|   throw new Error('not implemented')
+       |         ^
+      6| }
+      7|
+ ❯ src/data/seed.test.ts:9:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/35]⎯
+
+ FAIL  src/data/seed.test.ts > parseTransactions (data edge) > rejects a record with an unknown status, naming the record
+AssertionError: expected [Function] to throw error matching /t1.*status/ but got 'not implemented'
+
+- Expected:
+/t1.*status/
+
++ Received:
+"not implemented"
+
+ ❯ src/data/seed.test.ts:13:71
+     11|
+     12|   it('rejects a record with an unknown status, naming the record', () …
+     13|     expect(() => parseTransactions([{ ...good, status: 'settled' }])).…
+       |                                                                       ^
+     14|   })
+     15|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/35]⎯
+
+ FAIL  src/data/seed.test.ts > parseTransactions (data edge) > rejects money that is not integer cents
+AssertionError: expected [Function] to throw error matching /t1.*amountCents/ but got 'not implemented'
+
+- Expected:
+/t1.*amountCents/
+
++ Received:
+"not implemented"
+
+ ❯ src/data/seed.test.ts:17:71
+     15|
+     16|   it('rejects money that is not integer cents', () => {
+     17|     expect(() => parseTransactions([{ ...good, amountCents: 12.5 }])).…
+       |                                                                       ^
+     18|   })
+     19|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/35]⎯
+
+ FAIL  src/data/seed.test.ts > parseTransactions (data edge) > rejects data that is not a list
+AssertionError: expected [Function] to throw error matching /list/ but got 'not implemented'
+
+- Expected:
+/list/
+
++ Received:
+"not implemented"
+
+ ❯ src/data/seed.test.ts:21:41
+     19|
+     20|   it('rejects data that is not a list', () => {
+     21|     expect(() => parseTransactions({})).toThrow(/list/)
+       |                                         ^
+     22|   })
+     23| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects min amount greater than max
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:21:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a negative min amount
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:25:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a negative max amount
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:29:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects an amount that is not a number
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:33:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects an amount with more than 2 decimal places
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:38:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a to date before the from date
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:42:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > rejects a date that is not a real calendar date
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:46:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: invalid input (SPEC-0001 › Invalid filter input) > reports an amount error and a date error together
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ errorsFor src/domain/filters.test.ts:8:18
+ ❯ src/domain/filters.test.ts:52:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: valid input > treats empty bounds as unbounded
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:60:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: valid input > converts dollar bounds to cents and accepts equal bounds
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:64:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/35]⎯
+
+ FAIL  src/domain/filters.test.ts > validateFilters: valid input > ignores surrounding spaces
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:69:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/35]⎯
+
+ FAIL  src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the status filter
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:75:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/35]⎯
+
+ FAIL  src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the date range with inclusive bounds
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:80:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/35]⎯
+
+ FAIL  src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies the amount range with inclusive bounds on amount only, not amount + surcharge
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:85:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/35]⎯
+
+ FAIL  src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies one-sided bounds
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:89:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/35]⎯
+
+ FAIL  src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies all filters together
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:94:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/35]⎯
+
+ FAIL  src/domain/filters.test.ts > applyFilters (SPEC-0001 › List and filters) > applies no filters when everything is empty
+Error: not implemented
+ ❯ validateFilters src/domain/filters.ts:34:9
+     32|
+     33| export function validateFilters(_raw: RawFilters): ValidationResult {
+     34|   throw new Error('not implemented')
+       |         ^
+     35| }
+     36|
+ ❯ criteriaFor src/domain/filters.test.ts:14:18
+ ❯ src/domain/filters.test.ts:98:38
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/35]⎯
+
+ FAIL  src/domain/filters.test.ts > sortNewestFirst > orders by date descending, then id descending
+Error: not implemented
+ ❯ sortNewestFirst src/domain/filters.ts:43:9
+     41| /** Newest date first; ties broken by id, descending, so the order is …
+     42| export function sortNewestFirst(_transactions: readonly Transaction[])…
+     43|   throw new Error('not implemented')
+       |         ^
+     44| }
+     45|
+ ❯ src/domain/filters.test.ts:105:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/35]⎯
+
+ FAIL  src/domain/filters.test.ts > sortNewestFirst > does not mutate its input
+Error: not implemented
+ ❯ sortNewestFirst src/domain/filters.ts:43:9
+     41| /** Newest date first; ties broken by id, descending, so the order is …
+     42| export function sortNewestFirst(_transactions: readonly Transaction[])…
+     43|   throw new Error('not implemented')
+       |         ^
+     44| }
+     45|
+ ❯ src/domain/filters.test.ts:110:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/35]⎯
+
+ FAIL  src/domain/money.test.ts > formatCents > formats cents as US dollars
+Error: not implemented
+ ❯ formatCents src/domain/money.ts:5:9
+      3| /** Formats integer cents as US dollars, e.g. 123456 → "$1,234.56". Di…
+      4| export function formatCents(_cents: number): string {
+      5|   throw new Error('not implemented')
+       |         ^
+      6| }
+      7|
+ ❯ src/domain/money.test.ts:6:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/35]⎯
+
+ FAIL  src/domain/money.test.ts > parseDollars > parses whole and decimal dollars into integer cents
+Error: not implemented
+ ❯ parseDollars src/domain/money.ts:10:9
+      8| /** Parses a dollar amount typed by a user (e.g. "25", "25.50") into i…
+      9| export function parseDollars(_text: string): ParseDollarsResult {
+     10|   throw new Error('not implemented')
+       |         ^
+     11| }
+     12|
+ ❯ src/domain/money.test.ts:14:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/35]⎯
+
+ FAIL  src/domain/money.test.ts > parseDollars > rejects text that is not a plain number
+Error: not implemented
+ ❯ parseDollars src/domain/money.ts:10:9
+      8| /** Parses a dollar amount typed by a user (e.g. "25", "25.50") into i…
+      9| export function parseDollars(_text: string): ParseDollarsResult {
+     10|   throw new Error('not implemented')
+       |         ^
+     11| }
+     12|
+ ❯ src/domain/money.test.ts:23:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/35]⎯
+
+ FAIL  src/domain/money.test.ts > parseDollars > rejects negatives and more than 2 decimal places
+Error: not implemented
+ ❯ parseDollars src/domain/money.ts:10:9
+      8| /** Parses a dollar amount typed by a user (e.g. "25", "25.50") into i…
+      9| export function parseDollars(_text: string): ParseDollarsResult {
+     10|   throw new Error('not implemented')
+       |         ^
+     11| }
+     12|
+ ❯ src/domain/money.test.ts:28:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/35]⎯
+
+ FAIL  src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > returns 10 rows per page by default
+Error: not implemented
+ ❯ paginate src/domain/paginate.ts:12:9
+     10|
+     11| export function paginate<T>(_items: readonly T[], _page: number, _size…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/paginate.test.ts:8:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/35]⎯
+
+ FAIL  src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > clamps the page to the pages that exist
+Error: not implemented
+ ❯ paginate src/domain/paginate.ts:12:9
+     10|
+     11| export function paginate<T>(_items: readonly T[], _page: number, _size…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/paginate.test.ts:13:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/35]⎯
+
+ FAIL  src/domain/paginate.test.ts > paginate (SPEC-0001: 10 per page) > handles an empty list
+Error: not implemented
+ ❯ paginate src/domain/paginate.ts:12:9
+     10|
+     11| export function paginate<T>(_items: readonly T[], _page: number, _size…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/paginate.test.ts:18:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/35]⎯
+
+ FAIL  src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > processed total includes surcharge, excludes pending and refunded
+Error: not implemented
+ ❯ summarize src/domain/summary.ts:12:9
+     10|
+     11| export function summarize(_transactions: readonly Transaction[]): Summ…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/summary.test.ts:8:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/35]⎯
+
+ FAIL  src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > fees, surcharge and count use processed only
+Error: not implemented
+ ❯ summarize src/domain/summary.ts:12:9
+     10|
+     11| export function summarize(_transactions: readonly Transaction[]): Summ…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/summary.test.ts:12:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/35]⎯
+
+ FAIL  src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > does not subtract fees from the processed total
+Error: not implemented
+ ❯ summarize src/domain/summary.ts:12:9
+     10|
+     11| export function summarize(_transactions: readonly Transaction[]): Summ…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/summary.test.ts:19:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/35]⎯
+
+ FAIL  src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > empty set
+Error: not implemented
+ ❯ summarize src/domain/summary.ts:12:9
+     10|
+     11| export function summarize(_transactions: readonly Transaction[]): Summ…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/summary.test.ts:23:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/35]⎯
+
+ FAIL  src/domain/summary.test.ts > summarize (SPEC-0001 summary rules) > a set with no processed transactions summarises to zero
+Error: not implemented
+ ❯ summarize src/domain/summary.ts:12:9
+     10|
+     11| export function summarize(_transactions: readonly Transaction[]): Summ…
+     12|   throw new Error('not implemented')
+       |         ^
+     13| }
+     14|
+ ❯ src/domain/summary.test.ts:27:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/35]⎯
+
+
+ Test Files  5 failed | 1 passed (6)
+      Tests  35 failed | 1 passed (36)
+   Start at  13:31:44
+   Duration  2.05s (environment 71%, setup 18%, transform 7%, import 2%, tests 1%)
+
